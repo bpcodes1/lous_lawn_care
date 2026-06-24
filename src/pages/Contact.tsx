@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import truck2Img from '../assets/truck2.jpg'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -21,7 +22,7 @@ export default function Contact() {
   return (
     <main className="contact-page">
       {/* Page Header */}
-      <section className="page-header">
+      <section className="page-header" style={{ backgroundImage: `url(${truck2Img})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="page-header-overlay" />
         <div className="page-header-content">
           <h1>Contact Us</h1>
@@ -104,7 +105,7 @@ export default function Contact() {
               <div className="info-icon">@</div>
               <div>
                 <strong>Email</strong>
-                <a href="mailto:lowslawncare210@gmail.com">lowslawncare210@gmail.com</a>
+                <a href="mailto:louslawncare210@gmail.com">louslawncare210@gmail.com</a>
               </div>
             </div>
 
@@ -127,7 +128,7 @@ export default function Contact() {
             <div className="contact-social">
               <h3>Follow Us</h3>
               <a
-                href="https://facebook.com/Lous-Lawn-Care"
+                href="https://www.facebook.com/p/Lous-Lawn-Care-61555858341416/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-btn social-btn--facebook"

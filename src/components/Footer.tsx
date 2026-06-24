@@ -28,12 +28,12 @@ export default function Footer({ onNavigate }: FooterProps) {
 
         <div className="footer-contact">
           <h4>Contact</h4>
-          <a className="footer-link" href="mailto:lowslawncare210@gmail.com">
-            lowslawncare210@gmail.com
+          <a className="footer-link" href="mailto:louslawncare210@gmail.com">
+            louslawncare210@gmail.com
           </a>
           <a
             className="footer-link"
-            href="https://facebook.com/Lous-Lawn-Care"
+            href="https://www.facebook.com/p/Lous-Lawn-Care-61555858341416/"
             target="_blank"
             rel="noopener noreferrer"
           >

@@ -174,7 +174,7 @@ a {
 /* ── Extra Buttons ── */
 .btn-hero {
   display: inline-block;
-  background: rgba(60, 60, 40, 0.85);
+  background: var(--green-light);
   color: var(--white);
   padding: 0.85rem 2.4rem;
   border-radius: 3px;
@@ -189,13 +189,13 @@ a {
 }
 
 .btn-hero:hover {
-  background: rgba(40, 40, 20, 0.95);
+  background: var(--green);
   transform: translateY(-1px);
 }
 
 .btn-dark {
   display: inline-block;
-  background: #3a3a28;
+  background: var(--green-light);
   color: var(--white);
   padding: 0.75rem 1.8rem;
   border-radius: 3px;
@@ -211,7 +211,7 @@ a {
 }
 
 .btn-dark:hover {
-  background: #222215;
+  background: var(--green);
 }
 
 /* ── Hero ── */
@@ -260,9 +260,10 @@ a {
 .hero-title {
   font-size: clamp(2.8rem, 7vw, 5rem);
   font-weight: 800;
+  font-family: 'Big Shoulders Display', sans-serif;
   line-height: 1.1;
   margin-bottom: 1rem;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.04em;
 }
 
 .hero-subtitle {
@@ -520,8 +521,7 @@ a {
 .page-header-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, var(--black) 0%, var(--green-dark) 100%);
-  opacity: 0.95;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .page-header-content {

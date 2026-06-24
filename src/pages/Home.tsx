@@ -1,6 +1,6 @@
 import { Page } from '../App'
 import heroImg from '../assets/hero.jpg'
-import landscapeAfterImg from '../assets/landscape_after.jpg'
+import truckImg from '../assets/truck.jpg'
 import houseBefore from '../assets/house_before.jpg'
 import houseAfter from '../assets/house_after.jpg'
 import lawnBefore from '../assets/lawn_before.jpg'
@@ -71,7 +71,7 @@ export default function Home({ onNavigate }: HomeProps) {
         <div className="hero-about-wrap">
           <div className="about-card">
             <div className="about-card-image">
-              <img src={landscapeAfterImg} alt="Landscaping work by Lou's Lawn Care" />
+              <img src={truckImg} alt="Landscaping work by Lou's Lawn Care" />
             </div>
             <div className="about-card-text">
               <span className="section-eyebrow">Salem, Oregon Landscaping</span>
