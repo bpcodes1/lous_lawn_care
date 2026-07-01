@@ -41,7 +41,7 @@ export default function Footer({ onNavigate }: FooterProps) {
           </a>
           <a
             className="footer-link"
-            href="https://instagram.com/Louslawncare.llc"
+            href="https://www.instagram.com/Louslawncare.llc"
             target="_blank"
             rel="noopener noreferrer"
           >

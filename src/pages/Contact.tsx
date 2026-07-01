@@ -1,23 +1,35 @@
 import { useState } from 'react'
-import truck2Img from '../assets/truck2.jpg'
+import truck2Img from '../assets/truck2.webp'
+
+type Status = 'idle' | 'sending' | 'success' | 'error'
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    service: '',
-    message: '',
-  })
-  const [submitted, setSubmitted] = useState(false)
+  const [status, setStatus] = useState<Status>('idle')
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setSubmitted(true)
-  }
+    setStatus('sending')
 
-  const update = (field: keyof typeof formData) => (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => setFormData({ ...formData, [field]: e.target.value })
+    const formData = new FormData(e.currentTarget)
+    formData.append('access_key', '61c9bb71-9c88-435a-8247-cef1753e3e8d')
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+      })
+
+      const data = await response.json()
+      if (data.success) {
+        setStatus('success')
+        e.currentTarget.reset()
+      } else {
+        setStatus('error')
+      }
+    } catch {
+      setStatus('error')
+    }
+  }
 
   return (
     <main className="contact-page">
@@ -38,7 +50,7 @@ export default function Contact() {
             <h2>Request a Free Estimate</h2>
             <p>Fill out the form and we will get back to you as soon as possible.</p>
 
-            {submitted ? (
+            {status === 'success' ? (
               <div className="form-success">
                 <div className="form-success-icon">&#10003;</div>
                 <h3>Message Sent!</h3>
@@ -46,31 +58,34 @@ export default function Contact() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="contact-form">
+                <input type="hidden" name="subject" value="New Estimate Request — Lou's Lawn Care" />
+                <input type="checkbox" name="botcheck" style={{ display: 'none' }} />
+
                 <div className="form-group">
                   <label htmlFor="name">Full Name</label>
                   <input
                     id="name"
+                    name="name"
                     type="text"
                     required
+                    maxLength={100}
                     placeholder="Jane Doe"
-                    value={formData.name}
-                    onChange={update('name')}
                   />
                 </div>
                 <div className="form-group">
                   <label htmlFor="email">Email Address</label>
                   <input
                     id="email"
+                    name="email"
                     type="email"
                     required
+                    maxLength={150}
                     placeholder="jane@example.com"
-                    value={formData.email}
-                    onChange={update('email')}
                   />
                 </div>
                 <div className="form-group">
                   <label htmlFor="service">Service Needed</label>
-                  <select id="service" value={formData.service} onChange={update('service')}>
+                  <select id="service" name="service">
                     <option value="">Select a service...</option>
                     <option>Yard Maintenance</option>
                     <option>One Time Cleanup</option>
@@ -84,14 +99,21 @@ export default function Contact() {
                   <label htmlFor="message">Message</label>
                   <textarea
                     id="message"
+                    name="message"
                     rows={5}
+                    maxLength={1000}
                     placeholder="Tell us about your project and location..."
-                    value={formData.message}
-                    onChange={update('message')}
                   />
                 </div>
-                <button type="submit" className="btn-primary btn-full">
-                  Send Message
+
+                {status === 'error' && (
+                  <p style={{ color: 'red', fontSize: '0.9rem' }}>
+                    Something went wrong. Please try again or email us directly.
+                  </p>
+                )}
+
+                <button type="submit" className="btn-primary btn-full" disabled={status === 'sending'}>
+                  {status === 'sending' ? 'Sending...' : 'Send Message'}
                 </button>
               </form>
             )}
@@ -136,7 +158,7 @@ export default function Contact() {
                 Facebook
               </a>
               <a
-                href="https://instagram.com/Louslawncare.llc"
+                href="https://www.instagram.com/Louslawncare.llc"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="social-btn social-btn--instagram"
